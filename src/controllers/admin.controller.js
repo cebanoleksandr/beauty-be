@@ -74,12 +74,12 @@ export const register = async (req, res, next) => {
   const admin = await adminService.findByCredentials(email, password);
 
   if (!admin) {
-    throw ApiError.badRequest('No such user');
+    throw ApiError.badRequest('No such admin');
   }
 
   const accessToken = jwtService.sign(admin);
 
-  res.send({ user: { ...admin, id: admin._id }, accessToken });
+  res.send({ admin: { ...admin, id: admin._id }, accessToken });
 }
 
 export const login = async (req, res) => {
@@ -87,10 +87,10 @@ export const login = async (req, res) => {
   const admin = await adminService.findByCredentials(email, password);
 
   if (!admin) {
-    throw ApiError.badRequest('No such user');
+    throw ApiError.badRequest('No such admin');
   }
 
   const accessToken = jwtService.sign(admin);
 
-  res.send({ admin, accessToken });
+  res.send({ admin: { ...admin, id: admin._id }, accessToken });
 }

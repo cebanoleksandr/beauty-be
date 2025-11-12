@@ -5,7 +5,7 @@ const mongoUri = 'mongodb+srv://cebanoleksandr_db_user:Bggo4QRkscagmY4f@cluster0
 export const client = new MongoClient(mongoUri);
 
 export const adminsCollection = client.db('beauty').collection('admins');
-// export const postsCollection = client.db('beauty').collection('posts');
+export const clientsCollection = client.db('beauty').collection('clients');
 // export const commentsCollection = client.db('beauty').collection('comments');
 
 export const runDb = async () => {
