@@ -6,7 +6,7 @@ export const client = new MongoClient(mongoUri);
 
 export const adminsCollection = client.db('beauty').collection('admins');
 export const clientsCollection = client.db('beauty').collection('clients');
-// export const commentsCollection = client.db('beauty').collection('comments');
+export const servicesCollection = client.db('beauty').collection('services');
 
 export const runDb = async () => {
   try {
