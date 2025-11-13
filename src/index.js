@@ -6,6 +6,7 @@ import { authMiddleware } from './middlewares/authMiddleware.js';
 import { router as adminRouter } from './routes/admin.route.js';
 import { router as clientRouter } from './routes/client.route.js';
 import { router as serviceRouter } from './routes/service.route.js';
+import { router as appointmentRouter } from './routes/appointment.route.js';
 
 const app = express();
 const PORT = 3005;
@@ -21,7 +22,7 @@ app.get('/', async (req, res) => {
 app.use('/admins', adminRouter);
 app.use('/clients', clientRouter);
 app.use('/service', authMiddleware, serviceRouter);
-// app.use('/comments', authMiddleware, commentsRouter);
+app.use('/appointments', authMiddleware, appointmentRouter);
 
 const startApp = async () => {
   await runDb();

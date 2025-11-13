@@ -1,5 +1,4 @@
 import { servicesCollection } from '../db.js';
-import { ApiError } from '../exeptions/api.error.js';
 import { ObjectId } from 'mongodb';
 
 export const getAll = async ({ query, masterId }) => {
