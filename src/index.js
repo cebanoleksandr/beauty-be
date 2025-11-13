@@ -7,6 +7,7 @@ import { router as adminRouter } from './routes/admin.route.js';
 import { router as clientRouter } from './routes/client.route.js';
 import { router as serviceRouter } from './routes/service.route.js';
 import { router as appointmentRouter } from './routes/appointment.route.js';
+import { router as materialRouter } from './routes/material.route.js';
 
 const app = express();
 const PORT = 3005;
@@ -23,6 +24,7 @@ app.use('/admins', adminRouter);
 app.use('/clients', clientRouter);
 app.use('/service', authMiddleware, serviceRouter);
 app.use('/appointments', authMiddleware, appointmentRouter);
+app.use('/materials', authMiddleware, materialRouter);
 
 const startApp = async () => {
   await runDb();

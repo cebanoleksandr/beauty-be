@@ -1,4 +1,4 @@
-import { appointmentsCollection } from '../db.js';
+import { appointmentsCollection, servicesCollection } from '../db.js';
 import { ObjectId } from 'mongodb';
 
 export const getAll = async ({ masterId, clientId, serviceId, status, startTime }) => {
