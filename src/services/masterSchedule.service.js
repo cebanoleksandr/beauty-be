@@ -1,4 +1,4 @@
-import { sheduleCollection } from '../db.js';
+import { scheduleCollection } from '../db.js';
 import { ObjectId } from 'mongodb';
 
 export const getAll = async ({ dayOfWeek, masterId, isAvailable }) => {
@@ -17,7 +17,7 @@ export const getAll = async ({ dayOfWeek, masterId, isAvailable }) => {
       filter.isAvailable = isAvailable;
     }
 
-    const schedule = await sheduleCollection.find(filter).toArray();
+    const schedule = await scheduleCollection.find(filter).toArray();
     console.log('Fetched all schedule:', schedule.length);
 
     return schedule;
@@ -29,7 +29,7 @@ export const getAll = async ({ dayOfWeek, masterId, isAvailable }) => {
 
 export const getById = async (id) => {
   try {
-    const schedule = await sheduleCollection.findOne({ _id: new ObjectId(id) });
+    const schedule = await scheduleCollection.findOne({ _id: new ObjectId(id) });
     console.log(`Fetched schedule by "ID" ${id}:`, schedule ? 'found' : 'not found');
 
     if (schedule) {
@@ -58,7 +58,7 @@ export const update = async ({ dayOfWeek, masterId, startTime, endTime, isAvaila
       return await getById(id);
     }
 
-    const result = await sheduleCollection.updateOne(
+    const result = await scheduleCollection.updateOne(
       { _id: new ObjectId(id) },
       { $set: updateFields }
     );
@@ -78,7 +78,7 @@ export const update = async ({ dayOfWeek, masterId, startTime, endTime, isAvaila
 
 export const remove = async (id) => {
   try {
-    const result = await sheduleCollection.deleteOne({ _id: new ObjectId(id) });
+    const result = await scheduleCollection.deleteOne({ _id: new ObjectId(id) });
     console.log(`Schedule with "ID" ${id} deleted. Deleted Count: ${result.deletedCount}`);
 
     return result.deletedCount > 0;
@@ -99,7 +99,7 @@ export const create = async ({ dayOfWeek, masterId, startTime, endTime, isAvaila
     updatedAt: new Date(),
   };
 
-  const result = await sheduleCollection.insertOne(newSchedule);
+  const result = await scheduleCollection.insertOne(newSchedule);
   console.log(`Schedule with "ID": ${result.insertedId} created successfully.`);
 
   return newSchedule;
