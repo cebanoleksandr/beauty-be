@@ -1,21 +1,21 @@
-import * as serviceService from '../services/service.service.js';
+import * as scheduleExceptionService from '../services/scheduleException.service.js';
 
 export const get = async (req, res) => {
   const { query, masterId } = req.query;
-  const services = await serviceService.getAll({ query, masterId });
-  res.send(services);
+  const exceptions = await scheduleExceptionService.getAll({ query, masterId });
+  res.send(exceptions);
 };
 
 export const getOne = async (req, res) => {
   const { id } = req.params;
-  const service = await serviceService.getById(id);
+  const exception = await scheduleExceptionService.getById(id);
 
-  if (!service) {
+  if (!exception) {
     res.sendStatus(404);
     return;
   }
 
-  res.send({ ...service, id: service._id });
+  res.send({ ...exception, id: exception._id });
 }
 
 export const update = async (req, res) => {
@@ -27,14 +27,14 @@ export const update = async (req, res) => {
     masterIds
   } = req.body;
 
-  const service = await serviceService.getById(id);
+  const exception = await scheduleExceptionService.getById(id);
 
-  if (!service) {
+  if (!exception) {
     res.sendStatus(404);
     return;
   }
 
-  const updatedService = await serviceService.update({
+  const updatedException = await scheduleExceptionService.update({
     id,
     title,
     price,
@@ -42,18 +42,18 @@ export const update = async (req, res) => {
     masterIds
   });
 
-  res.send(updatedService);
+  res.send(updatedException);
 }
 
 export const remove = async (req, res) => {
   const { id } = req.params;
 
-  if (!serviceService.getById(id)) {
+  if (!scheduleExceptionService.getById(id)) {
     res.sendStatus(404);
     return;
   }
 
-  await serviceService.remove(id);
+  await scheduleExceptionService.remove(id);
 
   res.sendStatus(204);
 };
@@ -66,12 +66,12 @@ export const create = async (req, res) => {
     masterIds
   } = req.body;
 
-  const newService = await serviceService.create({
+  const newException = await scheduleExceptionService.create({
     title,
     price,
     duration_minutes,
     masterIds
   });
 
-  res.status(201).send(newService);
+  res.status(201).send(newException);
 };
