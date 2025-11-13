@@ -9,7 +9,8 @@ export const clientsCollection = client.db('beauty').collection('clients');
 export const servicesCollection = client.db('beauty').collection('services');
 export const appointmentsCollection = client.db('beauty').collection('appointments');
 export const materialsCollection = client.db('beauty').collection('materials');
-export const sheduleCollection = client.db('beauty').collection('schedule');
+export const scheduleCollection = client.db('beauty').collection('schedule');
+export const exceptionsCollection = client.db('beauty').collection('exceptions');
 
 export const runDb = async () => {
   try {

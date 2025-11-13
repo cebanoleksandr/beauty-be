@@ -31,8 +31,7 @@ export const getById = async (id) => {
     console.log(`Fetched service by "ID" ${id}:`, service ? 'found' : 'not found');
 
     if (service) {
-      const { ...serviceWithoutPassword } = service;
-      return serviceWithoutPassword;
+      return service;
     }
     return null;
   } catch (error) {

@@ -9,6 +9,7 @@ import { router as serviceRouter } from './routes/service.route.js';
 import { router as appointmentRouter } from './routes/appointment.route.js';
 import { router as materialRouter } from './routes/material.route.js';
 import { router as masterScheduleRouter } from './routes/masterSchedule.route.js';
+import { router as scheduleExceptionRouter } from './routes/scheduleException.route.js';
 
 const app = express();
 const PORT = 3005;
@@ -27,6 +28,7 @@ app.use('/service', authMiddleware, serviceRouter);
 app.use('/appointments', authMiddleware, appointmentRouter);
 app.use('/materials', authMiddleware, materialRouter);
 app.use('/schedule', authMiddleware, masterScheduleRouter);
+app.use('/schedule-exceptions', authMiddleware, scheduleExceptionRouter);
 
 const startApp = async () => {
   await runDb();
