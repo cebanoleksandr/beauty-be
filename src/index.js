@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
 
 app.use('/admins', adminRouter);
 app.use('/clients', clientRouter);
-app.use('/service', authMiddleware, serviceRouter);
+app.use('/services', authMiddleware, serviceRouter);
 app.use('/appointments', authMiddleware, appointmentRouter);
 app.use('/materials', authMiddleware, materialRouter);
 app.use('/schedule', authMiddleware, masterScheduleRouter);

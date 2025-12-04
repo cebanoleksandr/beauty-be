@@ -5,13 +5,13 @@ export const getAll = async ({ query, masterId }) => {
   try {
     const filter = {};
 
-    if (query) {
+    if (!!query) {
       filter.$or = [
         { title: { $regex: query, $options: 'i' } },
       ];
     }
 
-    if (masterId) {
+    if (!!masterId) {
       filter.masterIds = { $in: [new ObjectId(masterId)] };
     }
 
@@ -40,13 +40,14 @@ export const getById = async (id) => {
   }
 };
 
-export const update = async ({ title, price, duration_minutes, masterIds }) => {
+export const update = async ({ title, price, duration_minutes, masterIds, imageUrl }) => {
   try {
     const updateFields = {};
     if (title !== undefined) updateFields.title = title;
     if (price !== undefined) updateFields.price = price;
     if (duration_minutes !== undefined) updateFields.duration_minutes = duration_minutes;
     if (masterIds !== undefined) updateFields.masterIds = masterIds;
+    if (imageUrl !== undefined) updateFields.imageUrl = imageUrl;
 
     updateFields.updatedAt = new Date();
 
@@ -85,12 +86,13 @@ export const remove = async (id) => {
   }
 };
 
-export const create = async ({ title, price, duration_minutes, masterIds }) => {
+export const create = async ({ title, price, duration_minutes, masterIds, imageUrl }) => {
   const newService = {
     title,
     price,
     duration_minutes,
     masterIds,
+    imageUrl,
     createdAt: new Date(),
     updatedAt: new Date(),
   };

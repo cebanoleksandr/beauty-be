@@ -24,7 +24,8 @@ export const update = async (req, res) => {
     title,
     price,
     duration_minutes,
-    masterIds
+    masterIds,
+    imageUrl
   } = req.body;
 
   const service = await serviceService.getById(id);
@@ -39,7 +40,8 @@ export const update = async (req, res) => {
     title,
     price,
     duration_minutes,
-    masterIds
+    masterIds,
+    imageUrl
   });
 
   res.send(updatedService);
@@ -63,14 +65,16 @@ export const create = async (req, res) => {
     title,
     price,
     duration_minutes,
-    masterIds
+    masterIds,
+    imageUrl
   } = req.body;
 
   const newService = await serviceService.create({
     title,
     price,
     duration_minutes,
-    masterIds
+    masterIds,
+    imageUrl
   });
 
   res.status(201).send(newService);
